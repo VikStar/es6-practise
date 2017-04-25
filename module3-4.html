@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tagged Templates</title>
+	<style>
+		.hl { background: #ffc600; }
+	</style>
+</head>
+<body>
+	<div class="bio"></div>
+
+	<script>
+		const dict = {
+			HTML: 'Hyper Text Murkup Language',
+			CSS: 'Cascading Style Sheets',
+			JS: 'JavaScript'
+		};
+
+		function addAbbreviation(strings, ...values) {
+			const abbreviated = values.map(value => {
+				if (dict[value]) {
+					return `<abbr title="${dict[value]}">${value}</abbr>`
+				}
+				return value;
+			});
+
+			return strings.reduce((sentence, string, i) => {
+				return `${sentence}${string}${abbreviated[i] || ''}`
+			}, '')
+		}
+
+		const first = 'Wes';
+		const last = 'Bos';
+		const sentence = addAbbreviation`Hello my name is ${first} ${last} and O love to code ${'HTML'}, ${'CSS'} and ${'JS'}`;
+
+		const bio = document.querySelector('.bio');
+		const p = document.createElement('p');
+		p.innerHTML = sentence;
+		bio.appendChild(p);
+	</script>
+</body>
+</html>
