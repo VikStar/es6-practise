@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+	  button { font-size: 100px; }
+	  .on { background: #ffc600; }
+	</style>
+	<button id="pushy">Push Me</button>
+
+	<script>
+		const button = document.querySelector('#pushy');
+		button.addEventListener('click', function() {
+			this.classList.toggle('on');
+		});
+
+		/*****/
+		const person = {
+			points: 23,
+			score() {
+				console.log(this)
+				this.points++;
+			}
+		}
+
+		/*****/
+		class Car {
+			constructor(make, colour) {
+				this.make = make;
+				this.colour = colour;
+			}
+		}
+
+		const beemer = new Car('bmw', 'blue');
+		const subie = new Car('Subaru', 'white');
+
+		Car.prototype.summarize = function() {
+			return `This car is a ${this.make} in the colour ${this.colour}`;
+		}
+
+		/*****/
+		const orderChildren = function() {
+			const children = Array.from(arguments);
+			return children.map( (child, i) => {
+				return `${child} was child #${i + 1}`;
+			});
+			console.log(arguments);
+		}
+	</script>
+</body>
+</html>
